@@ -24,7 +24,7 @@ REMOTE=voevent.4pisky.org
     --receive \
     --local-ivo=$LOCALIVORN \
     --remote=$REMOTE \
-    --cmd=$HANDLER
+    --cmd=$HANDLER  &>/home/comet/logs/comet-stdout.log
 
 
 
