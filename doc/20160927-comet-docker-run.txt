@@ -72,7 +72,7 @@ docker run \
 	--name "comet-author-loop" \
 	--memory 512M \
 	--link "comet-broker:comet-broker" \
-	--volume "${HOME:?}/comet-docker/comet-docker/bin/send-alert.sh:/home/send-alert-loop.sh" \
+	--volume "${HOME:?}/comet-docker/comet-docker/bin/send-alert-loop.sh:/home/send-alert-loop.sh" \
 	--volume "${HOME:?}/comet-docker/comet-docker/src:/home/comet/src" \
 	--volume "/var/logs/comet/:/home/comet/logs" \
 	"comet-broker" bash -c '/home/send-alert-loop.sh'
