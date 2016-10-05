@@ -30,9 +30,10 @@ docker build --tag comet-broker comet-docker
 
 chmod 755 "${HOME:?}/comet-docker/comet-docker/bin/setup-comet.sh" 
 chmod 755 "${HOME:?}/comet-docker/comet-docker/bin/send-alert.sh" 
+chmod 755 "${HOME:?}/comet-docker/comet-docker/bin/send-alert-loop.sh" 
 chcon -t svirt_sandbox_file_t "${HOME:?}/comet-docker/comet-docker/bin/setup-comet.sh" 
 chcon -t svirt_sandbox_file_t "${HOME:?}/comet-docker/comet-docker/bin/send-alert.sh" 
-
+chcon -t svirt_sandbox_file_t "${HOME:?}/comet-docker/comet-docker/bin/send-alert-loop.sh" 
 
 ## Setup comet Broker
 docker run \
