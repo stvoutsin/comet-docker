@@ -41,7 +41,7 @@ docker run \
 	--name "comet-broker" \
 	--memory 512M \
 	--volume "${HOME:?}/comet-docker/comet-docker/bin/setup-comet.sh:/home/setup-comet.sh" \
-	--volume "${HOME:?}/comet-docker/comet-docker/fourpisky:/home/comet/src" \
+	--volume "${HOME:?}/comet-docker/comet-docker/src:/home/comet/src" \
 	--volume "/var/logs/comet/:/home/comet/logs" \
 	"comet-broker" bash -c '/home/setup-comet.sh'
 
@@ -56,6 +56,23 @@ docker run \
 	--memory 512M \
 	--link "comet-broker:comet-broker" \
 	--volume "${HOME:?}/comet-docker/comet-docker/bin/send-alert.sh:/home/send-alert.sh" \
-	--volume "${HOME:?}/comet-docker/comet-docker/fourpisky:/home/comet/src" \
+	--volume "${HOME:?}/comet-docker/comet-docker/src:/home/comet/src" \
+	--volume "/var/logs/comet/:/home/comet/logs" \
 	"comet-broker" bash -c '/home/send-alert.sh'
+
+
+
+
+
+
+## Start VOEvent Sending loop
+docker run \
+	--detach \
+	--name "comet-author-loop" \
+	--memory 512M \
+	--link "comet-broker:comet-broker" \
+	--volume "${HOME:?}/comet-docker/comet-docker/bin/send-alert.sh:/home/send-alert-loop.sh" \
+	--volume "${HOME:?}/comet-docker/comet-docker/src:/home/comet/src" \
+	--volume "/var/logs/comet/:/home/comet/logs" \
+	"comet-broker" bash -c '/home/send-alert-loop.sh'
 
